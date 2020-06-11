@@ -116,7 +116,7 @@
         normalScreenBtn.hide();
     }
 
-    $(document).ready(function () {
+    /*$(document).ready(function () {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", 'https://lgarcida.github.io/BI-slides/imgs/', true);
         xhr.responseType = 'document';
@@ -137,11 +137,11 @@
             }
         }
         xhr.send()
-    });
+    });*/
 
-    /*$(document).ready(function () {
+    $(document).ready(function () {
         $.ajax({
-            url: 'https://lgarcida.github.io/BI-slides/imgs/',
+            url: dir,
             success: function (data) {
                 $(data).find("a").attr("href", function (i, val) {
                     if (val.match(/\.(jpe?g|png)$/)) {
@@ -161,8 +161,7 @@
         normalScreenBtn.click(function () {
             cancelFullScreen();
         });
-
-    });*/
+    });
 </script>
 </body>
 
