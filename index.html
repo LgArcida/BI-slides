@@ -140,7 +140,7 @@
     });*/
 
     $(document).ready(function () {
-        $.ajax({
+        $.get({
             url: dir,
             success: function (data) {
                 $(data).find("a").attr("href", function (i, val) {
