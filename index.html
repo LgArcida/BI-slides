@@ -85,7 +85,7 @@
     function createSlide(imgSrc, idx) {
         const css = `carousel-item ${idx === 0 ? 'active' : ''}`;
         const interval = 10000;
-        return `<div class='${css}' data-interval='${interval}'> ${imgSrc} <img src='${imgSrc}' class='d-block w-100 bi-img'> </div>`;
+        return `<div class='${css}' data-interval='${interval}'> <img src='${imgSrc}' class='d-block w-100 bi-img'> </div>`;
     }
 
     function fullScreen() {
@@ -128,7 +128,6 @@
         files = files.split(',');
         for (let i = 0; i < files.length; i++) {
             const src = `${files[i]}`;
-            console.log(src)
             imgsContainer.append(createSlide(src, i));
         }
     });
