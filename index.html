@@ -142,7 +142,7 @@
 
     $(document).ready(function () {
         $.ajax({
-            url: dir,
+            url: 'https://lgarcida.github.io/BI-slides/imgs/',
             success: function (data) {
                 $(data).find("a").attr("href", function (i, val) {
                     if (val.match(/\.(jpe?g|png)$/)) {
