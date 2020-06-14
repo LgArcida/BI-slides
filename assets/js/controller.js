@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     body.click(() => {
-        if (clickCounter >= 5) {
+        if (clickCounter >= 3) {
             clearTimeout(clickTimer);
             clickCounter = 0;
             $('#actionsModal').modal({show: true});
