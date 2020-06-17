@@ -82,5 +82,12 @@ function init() {
 
     modalRef.on('hidden.bs.modal', function (e) {
         $('#infoTxt').hide();
-    })
+    });
+
+
+    /*$('.carousel-item').find('img').each(function(){
+        var imgClass = (this.width/this.height > 1) ? 'wide' : 'tall';
+        $(this).addClass(imgClass);
+    });*/
+
 }
