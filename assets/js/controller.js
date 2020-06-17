@@ -1,10 +1,14 @@
+let modalRef;
+
+
 $(document).ready(function () {
+    modalRef = $('#actionsModal');
 
     body.click(() => {
         if (clickCounter >= 3) {
             clearTimeout(clickTimer);
             clickCounter = 0;
-            $('#actionsModal').modal({show: true});
+            modalRef.modal({show: true});
         }
         clickCounter++;
         clearTimeout(clickTimer);
@@ -12,6 +16,13 @@ $(document).ready(function () {
     });
 
     // --------------------------------- Carousel
+    prevBtn.click(() => {
+        carousel.carousel('prev');
+    });
+    nextBtn.click(() => {
+        carousel.carousel('next');
+    });
+
 
     // ------------------------------ Screen buttons
     fullScreenBtn.click(() => {
@@ -24,7 +35,6 @@ $(document).ready(function () {
         fullScreenBtn.show();
         normalScreenBtn.hide();
     });
-    normalScreenBtn.hide();
 
     // ------------------------------ Slider buttons
     pauseBtn.click(() => {
@@ -37,10 +47,9 @@ $(document).ready(function () {
         pauseBtn.show();
         playBtn.hide();
     });
-    playBtn.hide();
 
+    init();
 });
-
 
 function fullScreen() {
     const element = document.documentElement;
@@ -63,5 +72,15 @@ function cancelFullScreen() {
     } else if (document.msCancelFullScreen) {
         document.msCancelFullScreen();
     }
+}
 
+
+function init() {
+    normalScreenBtn.hide();
+    playBtn.hide();
+    modalRef.modal({show: true});
+
+    modalRef.on('hidden.bs.modal', function (e) {
+        $('#infoTxt').hide();
+    })
 }
