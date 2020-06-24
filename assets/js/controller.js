@@ -1,7 +1,9 @@
 let modalRef;
-
+let carousel;
+let filesBk = [];
 
 $(document).ready(function () {
+    carousel = $('#imgsCarousel')
     modalRef = $('#actionsModal');
 
     body.click(() => {
@@ -74,20 +76,38 @@ function cancelFullScreen() {
     }
 }
 
+function refreshCarousel() {
+    carousel = $('#imgsCarousel');
+    carousel.on('slide.bs.carousel', (event) => {
+        activeIdx = event.to;
+        checkNewImages();
+    });
+}
 
 function init() {
     normalScreenBtn.hide();
     playBtn.hide();
     modalRef.modal({show: true});
-
-    modalRef.on('hidden.bs.modal', function (e) {
-        $('#infoTxt').hide();
-    });
-
-
-    /*$('.carousel-item').find('img').each(function(){
-        var imgClass = (this.width/this.height > 1) ? 'wide' : 'tall';
-        $(this).addClass(imgClass);
-    });*/
-
+    modalRef.on('hidden.bs.modal', () => $('#infoTxt').hide());
+    checkNewImages();
 }
+
+function checkNewImages() {
+    $.ajax({
+        method: 'post',
+        url: '/refreshImgs',
+        contentType: 'application/json',
+        success: function (files) {
+            const is_same = (filesBk.length === files.length) && filesBk.every((element, index) => element === files[index]);
+            if (!is_same) {
+                activeIdx = activeIdx > files.length - 1 ? 0 : activeIdx;
+                refreshImgContainer();
+                refreshCarousel();
+                createImagesSlides(files);
+            }
+            filesBk = files;
+            console.log(filesBk)
+        }
+    })
+}
+
