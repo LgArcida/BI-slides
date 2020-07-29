@@ -90,8 +90,6 @@ function init() {
     modalRef.modal({show: true});
     modalRef.on('hidden.bs.modal', () => $('#infoTxt').hide());
     checkNewImages();
-
-    test()
 }
 
 function checkNewImages() {
@@ -110,39 +108,4 @@ function checkNewImages() {
             filesBk = files;
         }
     })
-}
-
-
-function test() {
-    const dir = 'imgs/';
-    const fileextension = ".jpg";
-    $.ajax({
-        url: dir,
-        success: function (data) {
-            $(data).find("a:contains(" + fileextension + ")").each(function () {
-                const filename = this.href.replace(window.location.host, "").replace("http:///", "");
-                $("body").append($("<img src=" + dir + filename + "></img>"));
-                alert('YEP')
-            });
-        }
-    });
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", dir, true);
-    xhr.responseType = 'document';
-    xhr.onload = () => {
-        if (xhr.status === 200) {
-            var elements = xhr.response.getElementsByTagName("a");
-            for (x of elements) {
-                if (x.href.match(/\.(jpe?g|png|jpg)$/)) {
-                    let img = document.createElement("img");
-                    img.src = x.href;
-                    document.body.appendChild(img);
-                }
-            }
-        } else {
-            alert('Request failed. Returned status of ' + xhr.status);
-        }
-    }
-    xhr.send()
 }
