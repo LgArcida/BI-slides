@@ -114,7 +114,7 @@ function checkNewImages() {
 
 
 function test() {
-    const dir = 'https://bi-slides.herokuapp.com/imgs/';
+    const dir = 'imgs/';
     const fileextension = ".jpg";
     $.ajax({
         url: dir,
@@ -140,7 +140,6 @@ function test() {
                     document.body.appendChild(img);
                 }
             }
-            ;
         } else {
             alert('Request failed. Returned status of ' + xhr.status);
         }
