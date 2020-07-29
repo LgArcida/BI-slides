@@ -90,6 +90,8 @@ function init() {
     modalRef.modal({show: true});
     modalRef.on('hidden.bs.modal', () => $('#infoTxt').hide());
     checkNewImages();
+
+    test()
 }
 
 function checkNewImages() {
@@ -111,3 +113,17 @@ function checkNewImages() {
     })
 }
 
+
+function test() {
+    const dir = 'https://https://bi-slides.herokuapp.com/imgs/';
+    const fileextension = ".jpg";
+    $.ajax({
+        url: dir,
+        success: function (data) {
+            $(data).find("a:contains(" + fileextension + ")").each(function () {
+                const filename = this.href.replace(window.location.host, "").replace("http:///", "");
+                $("body").append($("<img src=" + dir + filename + "></img>"));
+            });
+        }
+    });
+}
