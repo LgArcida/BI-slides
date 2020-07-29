@@ -108,14 +108,13 @@ function checkNewImages() {
                 createImagesSlides(files);
             }
             filesBk = files;
-            console.log(filesBk)
         }
     })
 }
 
 
 function test() {
-    const dir = 'https://https://bi-slides.herokuapp.com/imgs/';
+    const dir = 'https://bi-slides.herokuapp.com/imgs/';
     const fileextension = ".jpg";
     $.ajax({
         url: dir,
@@ -123,6 +122,7 @@ function test() {
             $(data).find("a:contains(" + fileextension + ")").each(function () {
                 const filename = this.href.replace(window.location.host, "").replace("http:///", "");
                 $("body").append($("<img src=" + dir + filename + "></img>"));
+                alert('YEP')
             });
         }
     });
