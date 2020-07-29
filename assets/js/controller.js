@@ -114,7 +114,7 @@ function checkNewImages() {
 
 
 function test() {
-    const dir = 'https://bi-slides.herokuapp.com/imgs';
+    const dir = 'https://bi-slides.herokuapp.com/imgs/';
     const fileextension = ".jpg";
     $.ajax({
         url: dir,
